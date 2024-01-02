@@ -114,6 +114,7 @@ const DescriptionBar = ({ loading, getAPODdata, data }) => {
             style={{ color: "#368ef5", textDecoration: "none" }}
             className="description-bar-sub-title"
             href={data?.hdurl}
+            rel="noopener noreferrer"
           >
             Download Image
           </a>
