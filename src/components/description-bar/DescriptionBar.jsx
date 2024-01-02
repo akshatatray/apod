@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { formatDate, getFormattedDateForAPI } from "../../utils/utils";
 import "./index.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const DescriptionBar = ({ loading, getAPODdata, data }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -20,7 +22,69 @@ const DescriptionBar = ({ loading, getAPODdata, data }) => {
     getAPODdata(date);
   };
 
-  if (loading) return null;
+  if (loading) {
+    return (
+      <SkeletonTheme baseColor="#090b0f" highlightColor="#14161b">
+        <div className="description-bar-container">
+          <div className="description-bar-header">
+            <img
+              src="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg"
+              height={64}
+              width={64}
+              style={{ marginRight: "1rem" }}
+              alt="NASA Logo"
+            />
+            <p className="description-bar-sub-title" style={{ margin: 0 }}>
+              Astronomy Picture of the Day (APOD)
+            </p>
+          </div>
+          <div className="description-bar-main">
+            <h2 className="description-bar-title">
+              <Skeleton count={2} />
+            </h2>
+            <p className="description-bar-sub-title">
+              <Skeleton />
+            </p>
+            <Skeleton />
+            <hr
+              color="#AAA"
+              style={{
+                width: "100%",
+                borderWidth: ".5px",
+                marginTop: "1.25rem",
+              }}
+            />
+            <div className="description-bar-explanation-container">
+              <p className="description-bar-explanation">
+                <Skeleton count={10} />
+              </p>
+            </div>
+          </div>
+          <div className="description-bar-footer">
+            <div
+              className="description-bar-footer-left"
+              onClick={() => {
+                console.log("SELECTED DATE: ", selectedDate);
+                let previousDate = new Date(selectedDate);
+                previousDate.setDate(selectedDate.getDate() - 1);
+                handleDateChange(previousDate);
+              }}
+            />
+            <div
+              className="description-bar-footer-right"
+              onClick={() => {
+                if (!nextDisabled) {
+                  let nextDate = new Date(selectedDate);
+                  nextDate.setDate(selectedDate.getDate() + 1);
+                  handleDateChange(nextDate);
+                }
+              }}
+            />
+          </div>
+        </div>
+      </SkeletonTheme>
+    );
+  }
 
   return (
     <div className="description-bar-container">
@@ -39,10 +103,20 @@ const DescriptionBar = ({ loading, getAPODdata, data }) => {
       <div className="description-bar-main">
         <h2 className="description-bar-title">{data?.title}</h2>
         <p className="description-bar-sub-title">{formatDate(data?.date)}</p>
-        {data?.copyright !== "" && (
+        {data?.copyright && data?.copyright !== "" && (
           <p className="description-bar-sub-title">
             Copyright: {data?.copyright}
           </p>
+        )}
+        {data?.media_type === "image" && (
+          <a
+            target="_blank"
+            style={{ color: "#368ef5", textDecoration: "none" }}
+            className="description-bar-sub-title"
+            href={data?.hdurl}
+          >
+            Download Image
+          </a>
         )}
         <hr
           color="#AAA"

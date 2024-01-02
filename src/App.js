@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ImageBox from "./components/image-box/ImageBox";
-import DescriptionBar from "./components/decription-bar/DescriptionBar";
+import DescriptionBar from "./components/description-bar/DescriptionBar";
 import axios from "axios";
 import { getFormattedDateForAPI } from "./utils/utils";
 import "./App.css";

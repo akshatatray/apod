@@ -2,7 +2,13 @@ import React from "react";
 import "./index.css";
 
 const ImageBox = ({ loading, url, mediaType, redirectUrl }) => {
-  if (loading) return null;
+  if (loading) {
+    return (
+      <div style={{ minHeight: "50vh" }} className="image-box">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="image-box">
