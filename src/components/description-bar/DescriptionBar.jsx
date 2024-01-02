@@ -3,7 +3,6 @@ import { formatDate, getFormattedDateForAPI } from "../../utils/utils";
 import "./index.css";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import InstallButton from "../install-btn/InstallButtton";
 
 const DescriptionBar = ({ loading, getAPODdata, data }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -108,7 +107,6 @@ const DescriptionBar = ({ loading, getAPODdata, data }) => {
             Copyright: {data?.copyright}
           </p>
         )}
-        <InstallButton />
         {data?.media_type === "image" && (
           <a
             target="_blank"
