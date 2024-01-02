@@ -30,6 +30,7 @@ const DescriptionBar = ({ loading, getAPODdata, data }) => {
           height={64}
           width={64}
           style={{ marginRight: "1rem" }}
+          alt="NASA Logo"
         />
         <p className="description-bar-sub-title" style={{ margin: 0 }}>
           Astronomy Picture of the Day (APOD)

@@ -7,12 +7,10 @@ import { getFormattedDateForAPI } from "./utils/utils";
 const App = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const getAPODdata = async (date = new Date()) => {
     setLoading(true);
     setData(null);
-    setError(null);
     const formattedDate = getFormattedDateForAPI(date);
     try {
       const response = await axios.get(`https://api.nasa.gov/planetary/apod`, {
@@ -25,7 +23,7 @@ const App = () => {
       setData(response.data);
       console.log(response.data);
     } catch (error) {
-      setError(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }

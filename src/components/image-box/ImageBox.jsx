@@ -18,7 +18,6 @@ const ImageBox = ({ loading, url, mediaType, redirectUrl }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          background: "rgb(255,255,255)",
           background: "linear-gradient(90deg, rgba(255,255,255,0) 60%, rgba(15,17,22,1) 95%)",
         }}
       ></div>
@@ -37,7 +36,7 @@ const ImageBox = ({ loading, url, mediaType, redirectUrl }) => {
             alignItems: "center",
           }}
         >
-          <a target="_blank" href={redirectUrl}>
+          <a target="_blank" href={redirectUrl} rel="noreferrer">
             <div
               style={{
                 height: "5rem",
@@ -65,7 +64,7 @@ const ImageBox = ({ loading, url, mediaType, redirectUrl }) => {
           </a>
         </div>
       )}
-      <img className="astro-image" src={url} />
+      <img className="astro-image" src={url} alt="astro" />
     </div>
   );
 };
