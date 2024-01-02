@@ -6,21 +6,7 @@ const ImageBox = ({ loading, url, mediaType, redirectUrl }) => {
 
   return (
     <div className="image-box">
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 1000,
-          cursor: "pointer",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "linear-gradient(90deg, rgba(255,255,255,0) 60%, rgba(15,17,22,1) 95%)",
-        }}
-      ></div>
+      <div className="image-box-gradient"></div>
       {mediaType === "video" && (
         <div
           style={{

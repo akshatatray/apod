@@ -3,6 +3,7 @@ import ImageBox from "./components/image-box/ImageBox";
 import DescriptionBar from "./components/decription-bar/DescriptionBar";
 import axios from "axios";
 import { getFormattedDateForAPI } from "./utils/utils";
+import "./App.css";
 
 const App = () => {
   const [data, setData] = useState(null);
@@ -34,14 +35,7 @@ const App = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flex: 1,
-        height: "100vh",
-        backgroundColor: "#0f1116",
-      }}
-    >
+    <div className="app-main">
       <ImageBox
         loading={loading}
         url={data?.media_type === "image" ? data?.hdurl : data?.thumbnail_url}
