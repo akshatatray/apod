@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ImageBox from "./components/image-box/ImageBox";
 import DescriptionBar from "./components/description-bar/DescriptionBar";
 import axios from "axios";
@@ -9,7 +9,7 @@ const App = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const getAPODdata = async (date = new Date()) => {
+  const getAPODdata = useCallback(async (date = new Date()) => {
     setLoading(true);
     setData(null);
     const formattedDate = getFormattedDateForAPI(date);
@@ -32,11 +32,11 @@ const App = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getAPODdata();
-  }, []);
+  }, [getAPODdata]);
 
   return (
     <div className="app-main">
