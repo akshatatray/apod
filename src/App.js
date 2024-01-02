@@ -22,9 +22,7 @@ const App = () => {
         },
       });
       setData(response.data);
-      console.log(response.data);
     } catch (error) {
-      console.error(error);
       const previousDay = new Date(date);
       previousDay.setDate(date.getDate() - 1);
       await getAPODdata(previousDay);
